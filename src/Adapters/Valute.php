@@ -66,6 +66,8 @@ class Valute
 
 	public string $human;
 
+	public string $symbolPosition;
+
 	private array $rates = [];
 
 	private array $valute = [];
@@ -85,6 +87,7 @@ class Valute
 		$this->code = $valute['code'];
 		$this->amount = $valute['amount'];
 		$this->symbol = $this->getSymbol();
+		$this->symbolPosition = $this->getSymbolPosition();
 	}
 
 	public function valute(string $code): array|null {
@@ -159,6 +162,37 @@ class Valute
 
 	private function getSymbol(): string|null {
 		return $this::CURRENCY_SYMBOLS[$this->code] ?? null;
+	}
+
+	private function getSymbolPosition(): string {
+		if (in_array($this->symbol, [
+			'AUD',
+			'GBP',
+			'GBP',
+			'BRL',
+			'HKD',
+			'DKK',
+			'USD',
+			'EUR',
+			'EGP',
+			'INR',
+			'IDR',
+			'CAD',
+			'QAR',
+			'CNY',
+			'NZD',
+			'NOK',
+			'XDR',
+			'SGD',
+			'CHF',
+			'ZAR',
+			'KRW',
+			'JPY',
+		])) {
+			return 'left';
+		}
+
+		return 'right';
 	}
 
 	public function __toString()
