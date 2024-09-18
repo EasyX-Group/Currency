@@ -1,0 +1,20 @@
+{
+	"name": "easyx/php-currency",
+	"description": "PHP Library for working with currency based on official rates of the Central Bank of the Russian Federation",
+	"license": "MIT",
+	"keywords":
+	[
+		"currency"
+	],
+	"require":
+	{
+		"php": ">=7.4",
+		"ext-curl": "*",
+		"ext-simplexml": "*",
+		"ext-json": "*"
+	},
+	"autoload":
+	{
+		"psr-4": { "EasyX\\": "src" }
+	}
+}
