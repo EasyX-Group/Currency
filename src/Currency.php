@@ -1,23 +1,26 @@
 <?php namespace EasyX;
 
-use EasyX\Adapters\Cbr;
+use EasyX\Adapters\Valute;
 
 class Currency
 {
-	public $name;
+	private $adapter;
 
-	public function __construct(string $name = 'RUB')
+	public function __construct(float $amount, string $code = 'RUB')
 	{
-		$this->name = $name;
+		$this->adapter = new Valute([
+			'amount' => $amount,
+			'code' => $code,
+			'nominal' => $amount,
+		]);
 	}
 
-	public function exchange(float $amount, string $to): float
+	public function convert(string $to): Valute|null
 	{
-		return Cbr::exchange($this->name, $amount, $to);
-	}
+		if ($this->adapter->code != 'RUB') {
+			$this->adapter = $this->adapter->convert('RUB');
+		}
 
-	public function __toString()
-	{
-		return $this->name;
+		return $this->adapter->convert($to);
 	}
 }

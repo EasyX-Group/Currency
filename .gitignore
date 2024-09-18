@@ -1,3 +1,4 @@
 vendor/
 composer.lock
+.idea
 # Composer.lock should normally be included but is not recommended for libraries
