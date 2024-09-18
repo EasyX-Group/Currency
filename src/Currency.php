@@ -23,4 +23,9 @@ class Currency
 
 		return $this->adapter->convert($to);
 	}
+
+	public function __toString()
+	{
+		return $this->adapter;
+	}
 }
