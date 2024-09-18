@@ -165,7 +165,7 @@ class Valute
 	}
 
 	private function getSymbolPosition(): string {
-		if (in_array($this->symbol, [
+		if (in_array($this->code, [
 			'AUD',
 			'GBP',
 			'GBP',
