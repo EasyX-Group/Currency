@@ -14,12 +14,8 @@ Do currency manipulation in just few lines of code.
 ```php
 use EasyX\Currency;
 
-$amount = 100;
-$from = 'RUB';
-$to = 'USD';
-
-$currency = new Currency($amount, $from);
-$amountUsd = $currency->convert($to); // 0.9341
+$currency = new Currency(100, 'RUB');
+$amountUsd = $currency->convert('USD'); // 0.9341
 ```
 
 ## Environment recommendations
