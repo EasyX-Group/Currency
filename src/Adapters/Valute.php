@@ -13,7 +13,7 @@ class Valute
 		'AZN' => '₼',
 		'GBP' => '£',
 		'AMD' => '֏',
-		'BYN' => 'Br',
+		'BYN' => 'р.',
 		'BGN' => 'лв',
 		'BRL' => 'R$',
 		'HUF' => 'ƒ',
