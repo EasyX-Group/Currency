@@ -15,7 +15,7 @@ class Currency
 		]);
 	}
 
-	public function convert(string $to): Valute|null
+	public function convert(string $to)
 	{
 		if ($this->adapter->code != 'RUB') {
 			$this->adapter = $this->adapter->convert('RUB');

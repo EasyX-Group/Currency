@@ -90,7 +90,7 @@ class Valute
 		$this->symbolPosition = $this->getSymbolPosition();
 	}
 
-	public function valute(string $code): array|null {
+	public function valute(string $code) {
 		if ($code == 'RUB') {
 			return [
 				'name' => 'Российский рубль',
@@ -131,7 +131,7 @@ class Valute
 		});
 	}
 
-	public function convert(string $to): self|null
+	public function convert(string $to)
 	{
 		if ($to == 'RUB' && $this->code != 'RUB') {
 			if (!$valute = $this->valute($this->code)) {
@@ -160,7 +160,7 @@ class Valute
 		}
 	}
 
-	private function getSymbol(): string|null {
+	private function getSymbol() {
 		return $this::CURRENCY_SYMBOLS[$this->code] ?? null;
 	}
 
