@@ -90,7 +90,7 @@ class Valute
 		$this->symbolPosition = $this->getSymbolPosition();
 	}
 
-	public function valute(string $code): array|null {
+	public function valute(string $code) {
 		if ($code == 'RUB') {
 			return [
 				'name' => 'Российский рубль',
@@ -114,7 +114,7 @@ class Valute
 		return null;
 	}
 
-	private function resolveCurrencyRates(): void
+	private function resolveCurrencyRates()
 	{
 		$this->rates = Cache::remember('easyx_currency_cbr_rates', Carbon::now()->addMinutes(30), function () {
 			$curl = curl_init();
@@ -131,7 +131,7 @@ class Valute
 		});
 	}
 
-	public function convert(string $to): self|null
+	public function convert(string $to)
 	{
 		if ($to == 'RUB' && $this->code != 'RUB') {
 			if (!$valute = $this->valute($this->code)) {
@@ -160,11 +160,11 @@ class Valute
 		}
 	}
 
-	private function getSymbol(): string|null {
+	private function getSymbol() {
 		return $this::CURRENCY_SYMBOLS[$this->code] ?? null;
 	}
 
-	private function getSymbolPosition(): string {
+	private function getSymbolPosition() {
 		if (in_array($this->code, [
 			'AUD',
 			'GBP',
