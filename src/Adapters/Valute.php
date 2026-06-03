@@ -13,7 +13,7 @@ class Valute
 		'AZN' => '₼',
 		'GBP' => '£',
 		'AMD' => '֏',
-		'BYN' => 'р.',
+		'BYN' => 'Br',
 		'BGN' => 'лв',
 		'BRL' => 'R$',
 		'HUF' => 'ƒ',
@@ -68,6 +68,8 @@ class Valute
 
 	public string $symbolPosition;
 
+	public float $rate;
+
 	private array $rates = [];
 
 	private array $valute = [];
@@ -86,6 +88,7 @@ class Valute
 		$this->nominal = $valute['nominal'] ?? $this->valute['nominal'];
 		$this->code = $valute['code'];
 		$this->amount = $valute['amount'];
+		$this->rate = $valute['rate'] ?? 0;
 		$this->symbol = $this->getSymbol();
 		$this->symbolPosition = $this->getSymbolPosition();
 	}
@@ -106,7 +109,7 @@ class Valute
 					'name' => $valute['Name'],
 					'code' => $code,
 					'nominal' => 1.0,
-					'amount' => (float)$valute['VunitRate'],
+					'amount' => (float)str_replace(',', '.', $valute['VunitRate']),
 				];
 			}
 		}
@@ -143,7 +146,8 @@ class Valute
 			return new self([
 				'code' => 'RUB',
 				'amount' => $amount,
-				'nominal' => $amount,
+				'nominal' => 1,
+				'rate' => round($valute['amount'] / $valute['nominal'], 2)
 			]);
 		} else {
 			if (!$valute = $this->valute($to)) {
@@ -155,12 +159,14 @@ class Valute
 			return new self([
 				'code' => $to,
 				'amount' => $amount,
-				'nominal' => $amount,
+				'nominal' => 1,
+				'rate' => round($valute['amount'] / $valute['nominal'], 2)
 			]);
 		}
 	}
 
-	private function getSymbol() {
+	private function getSymbol()
+	{
 		return $this::CURRENCY_SYMBOLS[$this->code] ?? null;
 	}
 
